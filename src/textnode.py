@@ -46,7 +46,6 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
         if node.text.count(delimiter) != 2:
             raise Exception("Missing delimiter pair")
         if node.text_type != text_type_text:
-            print("NOT A TEXT TYPE")
             new_nodes.append(node)
         else:
             new_nodes = node.text.split(delimiter)
