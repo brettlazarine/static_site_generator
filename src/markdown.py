@@ -94,3 +94,11 @@ def text_to_textnodes(text):
         final_nodes.extend(nodes_after_links)
     
     return final_nodes
+
+
+def extract_title(markdown):
+    lines = markdown.split('\n')
+    for line in lines:
+        if line.startswith('# '):
+            return line[2:].strip()
+    raise Exception("No h1 header found")

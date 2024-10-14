@@ -166,6 +166,22 @@ class TestTextToSplitNodes(unittest.TestCase):
         ]
         self.assertEqual(nodes, expected)
 
+class TestExtractTitle(unittest.TestCase):
+    def test_extract_title(self):
+        text = "# This is a title"
+        title = extract_title(text)
+        self.assertEqual(title, "This is a title")
+    def test_extract_title_empty(self):
+        text = "# "
+        title = extract_title(text)
+        self.assertEqual(title, "")
+    def test_extract_title_no_hash(self):
+        markdown = "## Subheader\nSome content here"
+        with self.assertRaises(Exception) as context:
+            extract_title(markdown)
+        self.assertEqual(str(context.exception), "No h1 header found")
+        
+
 
 if __name__ == "__main__":
     unittest.main()
